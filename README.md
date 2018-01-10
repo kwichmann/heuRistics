@@ -1,2 +1,3 @@
-# heuristics
-Heuristics mining in R
+# Heuristics mining
+
+Implementation in R
