@@ -20,3 +20,13 @@ directSequenceMatrix <- function(w, ids = "id", events = "event", timestamps = "
   }
   dsm
 }
+
+# Calculate direct sequence heuristics value
+directSequenceHeuristicsValue <- function(dsm) {
+  (dsm - t(dsm)) / (dsm + t(dsm) + 1)
+}
+
+# Disregard values under a certain threshold
+trimMatrix <- function(mat, threshold = 0.9) {
+  (mat > threshold) * mat
+}
