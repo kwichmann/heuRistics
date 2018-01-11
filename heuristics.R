@@ -10,6 +10,8 @@ directSequenceMatrix <- function(w, ids = "id", events = "event", timestamps = "
   # Initialize matrix with zeroes
   matrixDimension <- length(event_list)
   dsm <- matrix(0, nrow = matrixDimension, ncol = matrixDimension)
+  rownames(dsm) <- event_list
+  colnames(dsm) <- event_list
   for (trace in traces$trace) {
     for (i in 1:(length(trace) - 1)) {
       # Use event hash function to translate to numbers
@@ -24,6 +26,12 @@ directSequenceMatrix <- function(w, ids = "id", events = "event", timestamps = "
 # Calculate direct sequence heuristics value
 directSequenceHeuristicsValue <- function(dsm) {
   (dsm - t(dsm)) / (dsm + t(dsm) + 1)
+}
+
+# Calculate one-loop heuristics values
+oneLoopHeursticsValue <- function(dsm) {
+  diagonal <- diag(dsm)
+  diagonal / (diagonal + 1)
 }
 
 # Disregard values under a certain threshold
