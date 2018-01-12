@@ -1,14 +1,12 @@
 source("logToTraces.R")
 source("heuristics.R")
 
-fake <- data.frame(id = sample(1:10, 1000, replace = T),
-                   event = sample(LETTERS[1:8], 1000, replace = T),
-                   timestamp = runif(1000) * 100)
+fake <- data.frame(id = sample(1:10, 100, replace = T),
+                   event = sample(LETTERS[1:8], 100, replace = T),
+                   timestamp = runif(100) * 100)
 
 a <- getAllTraces(fake)
 
-b <- directSequenceMatrix(fake)
+b <- heuristicsMatrices(fake)
 
-c <- directSequenceHeuristicsValue(b)
-
-print(c)
+print(b)
